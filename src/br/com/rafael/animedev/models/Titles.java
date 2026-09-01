@@ -1,22 +1,27 @@
 package br.com.rafael.animedev.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Titles {
-    private String title;
+    @SerializedName("title_english")
     private String titleEnglish;
+    @SerializedName("title_japanese")
     private String titleJapanese;
+    @SerializedName("status")
     private String status;
     private String image;
     private int dataInicio;
     private int dataFim;
+    @SerializedName("duration")
     private String duration;
+    @SerializedName("synopsis")
     private String synopsis;
     private String studio;
     private String youtubeTrailher;
     private int views;
     private int likes;
 
-    public Titles(String title, String titleEnglish, String titleJapanese, String status, String image, int dataInicio, int dataFim, String duration, String synopsis, String studio, String youtubeTrailher, int views, int likes) {
-        this.title = title;
+    public Titles(String titleEnglish, String titleJapanese, String status, String image, int dataInicio, int dataFim, String duration, String synopsis, String studio, String youtubeTrailher, int views, int likes) {
         this.titleEnglish = titleEnglish;
         this.titleJapanese = titleJapanese;
         this.status = status;
@@ -29,10 +34,6 @@ public class Titles {
         this.youtubeTrailher = youtubeTrailher;
         this.views = views;
         this.likes = likes;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public String getTitleEnglish() {
@@ -85,6 +86,12 @@ public class Titles {
 
     @Override
     public String toString() {
-        return "Título: " + this.getTitle() + " Título em ingles: " + getTitleEnglish() + "Titulo em Jápones: " + getTitleJapanese() + "Status da obra: " + getStatus() + "lançamento: " + getDataInicio() + "tempo de diração: " + getDuration();
+        return "Titles{" +
+                "titleEnglish='" + titleEnglish + '\'' +
+                ", titleJapanese='" + titleJapanese + '\'' +
+                ", status='" + status + '\'' +
+                ", duration='" + duration + '\'' +
+                ", synopsis='" + synopsis + '\'' +
+                '}';
     }
 }
