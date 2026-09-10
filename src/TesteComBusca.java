@@ -1,6 +1,4 @@
-import br.com.rafael.animedev.Conexaoapi.LeitorObjeto;
-import br.com.rafael.animedev.models.Anime;
-import br.com.rafael.animedev.models.Titles;
+import br.com.rafael.animedev.Conexaoapi.TitleOmdb;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -27,11 +25,11 @@ public class TesteComBusca {
                 .send(request, HttpResponse.BodyHandlers.ofString());
 
         String itemPego = response.body();
-        System.out.println(itemPego);
+        //System.out.println(itemPego);
 
         Gson gson = new Gson();
-        LeitorObjeto itemrecebido = gson.fromJson(itemPego, LeitorObjeto.class);
-        Anime testeAnime = itemrecebido.getData();
+        TitleOmdb.DataWrapper testeAnime = gson.fromJson(itemPego, TitleOmdb.DataWrapper.class);
+        System.out.println("separando");
         System.out.println(testeAnime);
     }
 }
