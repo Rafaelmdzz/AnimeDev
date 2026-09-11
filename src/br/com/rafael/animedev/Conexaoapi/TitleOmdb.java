@@ -16,7 +16,26 @@ public record TitleOmdb(String title_english,
                         String synopsis,
                         List<Studio> studios,
                         Trailer trailer,
-                        String image_url,
-                        int favorites) {
+                        ImagensAnime images,
+                        int favorites
+
+) {
     public record DataWrapper(TitleOmdb data) {}
+    public record DataWrapperId(TitleOmdb data) {}
+    public record DataWrapperBusca(List<TitleOmdb> data) {}
+
+    @Override
+    public String toString() {
+        return "TitleOmdb{" +
+                "title_english='" + title_english + '\'' +
+                ", title_japanese='" + title_japanese + '\'' +
+                ", status='" + status + '\'' +
+                ", lançamento=" + aired +
+                ", duration='" + duration + '\'' +
+                ", studios=" + studios +
+                ", trailer=" + trailer +
+                ", image_url='" + images + '\'' +
+                ", favorites=" + favorites +
+                '}';
+    }
 }

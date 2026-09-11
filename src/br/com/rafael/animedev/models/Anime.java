@@ -8,4 +8,6 @@ public class Anime extends  Titles{
         super(titleEnglish, titleJapanese, status, image, dataInicio, dataFim, duration, synopsis, studio, youtubeTrailher, views, likes);
         this.episodes = episodes;
     }
+
+
 }

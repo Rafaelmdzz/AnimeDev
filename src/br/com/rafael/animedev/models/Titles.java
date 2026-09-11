@@ -1,7 +1,10 @@
 package br.com.rafael.animedev.models;
 
+import br.com.rafael.animedev.Conexaoapi.Studio;
+import br.com.rafael.animedev.Conexaoapi.TitleOmdb;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,9 +14,10 @@ public class Titles {
     private String status;
     private String image;
     private int dataInicio;
-    private int duration;
+    private int durationMin;
+    private String durationString;
     private String synopsis;
-    private String studio;
+    private List<Studio> studio;
     private String trailher;
     private int likes;
 
@@ -23,9 +27,8 @@ public class Titles {
         this.status = status;
         this.image = image;
         this.dataInicio = dataInicio;
-        this.duration = converterTempoDuracao(duration);
+        this.durationMin = converterTempoDuracao(duration);
         this.synopsis = synopsis;
-        this.studio = studio;
         this.trailher = trailher;
         this.likes = likes;
     }
@@ -33,6 +36,16 @@ public class Titles {
     public Titles(String titleEnglish, String status) {
         this.titleEnglish = titleEnglish;
         this.status = status;
+    }
+
+    public Titles(TitleOmdb data) {
+        this.titleEnglish = data.title_english();
+        this.titleJapanese = data.title_japanese();
+        this.status = data.status();
+        this.durationMin = converterTempoDuracao(data.duration());
+        this.durationString = data.duration();
+        this.synopsis = data.synopsis();
+        this.studio = data.studios()
     }
 
     public String getTitleEnglish() {
@@ -77,21 +90,19 @@ public class Titles {
 
     public static int converterTempoDuracao (String duracaoStr) {
         if (duracaoStr == null || duracaoStr.isEmpty() || duracaoStr.equals("Unknown")) {
-            return 0; // Retorna 0 caso a API não tenha a duração do anime
+            return 0;
         }
 
         int minutosTotais = 0;
 
-        // 1. Procura o número antes da palavra "hr"
         Matcher matcherHora = Pattern.compile("(\\d+)\\s*hr").matcher(duracaoStr);
         if (matcherHora.find()) {
-            minutosTotais += Integer.parseInt(matcherHora.group(1)) * 60; // Multiplica por 60 minutos
+            minutosTotais += Integer.parseInt(matcherHora.group(1)) * 60;
         }
 
-        // 2. Procura o número antes da palavra "min"
         Matcher matcherMin = Pattern.compile("(\\d+)\\s*min").matcher(duracaoStr);
         if (matcherMin.find()) {
-            minutosTotais += Integer.parseInt(matcherMin.group(1)); // Soma os minutos restantes
+            minutosTotais += Integer.parseInt(matcherMin.group(1));
         }
 
         return minutosTotais;
