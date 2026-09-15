@@ -1,9 +1,9 @@
 package br.com.rafael.animedev.models;
 
-import br.com.rafael.animedev.Conexaoapi.Studio;
 import br.com.rafael.animedev.Conexaoapi.TitleOmdb;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,15 +13,15 @@ public class Titles {
     private String titleJapanese;
     private String status;
     private String image;
-    private int dataInicio;
+    private String dataInicio;
     private int durationMin;
     private String durationString;
     private String synopsis;
-    private List<Studio> studio;
+    private List<String> studio = new ArrayList<>();
     private String trailher;
     private int likes;
 
-    public Titles(String titleEnglish, String titleJapanese, String status, String image, int dataInicio, int dataFim, String duration, String synopsis, String studio, String trailher, int views, int likes) {
+    public Titles(String titleEnglish, String titleJapanese, String status, String image, String dataInicio, int dataFim, String duration, String synopsis, String studio, String trailher, int views, int likes) {
         this.titleEnglish = titleEnglish;
         this.titleJapanese = titleJapanese;
         this.status = status;
@@ -42,51 +42,37 @@ public class Titles {
         this.titleEnglish = data.title_english();
         this.titleJapanese = data.title_japanese();
         this.status = data.status();
+        this.dataInicio = data.aired().string();
         this.durationMin = converterTempoDuracao(data.duration());
         this.durationString = data.duration();
         this.synopsis = data.synopsis();
-        this.studio = data.studios()
+        data.studios().forEach(studio1 -> this.studio.add(studio1.name()));
+        this.trailher = data.trailer().url();
+        this.image = data.images().jpg().image_url();
+        this.likes = data.favorites();
     }
 
-    public String getTitleEnglish() {
-        return titleEnglish;
-    }
+    public String getTitleEnglish() {return titleEnglish;}
 
-    public String getTitleJapanese() {
-        return titleJapanese;
-    }
+    public String getTitleJapanese() {return titleJapanese;}
 
-    public String getStatus() {
-        return status;
-    }
+    public String getStatus() {return status;}
 
-    public String getImage() {
-        return image;
-    }
+    public String getImage() {return image;}
 
-    public int getDataInicio() {
-        return dataInicio;
-    }
+    public String getDataInicio() {return dataInicio;}
 
-    public int getDuration() {
-        return duration;
-    }
+    public int getDurationMin() {return durationMin;}
 
-    public String getSynopsis() {
-        return synopsis;
-    }
+    public String getDurationString() {return durationString;}
 
-    public String getStudio() {
-        return studio;
-    }
+    public String getSynopsis() {return synopsis;}
 
-    public String getYoutubeTrailher() {
-        return trailher;
-    }
+    public List<String> getStudio() {return studio;}
 
-    public int getLikes() {
-        return likes;
-    }
+    public String getTrailher() {return trailher;}
+
+    public int getLikes() {return likes;}
 
     public static int converterTempoDuracao (String duracaoStr) {
         if (duracaoStr == null || duracaoStr.isEmpty() || duracaoStr.equals("Unknown")) {
@@ -108,6 +94,25 @@ public class Titles {
         return minutosTotais;
     }
 
+    public void exibirTitulo(){
+        System.out.printf("""
+                Titulo em ingles: %s
+                Titulo em Japones: %s
+                Status de exibição: %s
+                URL da capa: %s
+                Lançamento: %s
+                Duração: %s
+                Synopsi: %s
+                Studios: %s
+                ULR do trailher: %s
+                Likes: %d
+                
+                
+                
+                
+                """, titleEnglish, titleJapanese, status, image, dataInicio, durationMin, synopsis, studio,trailher, likes);
+    }
+
     @Override
     public String toString() {
         return "Titles{" +
@@ -115,9 +120,11 @@ public class Titles {
                 ", titleJapanese='" + titleJapanese + '\'' +
                 ", status='" + status + '\'' +
                 ", image='" + image + '\'' +
-                ", dataInicio=" + dataInicio +
-                ", duration=" + duration +
-                ", studio='" + studio + '\'' +
+                ", dataInicio='" + dataInicio + '\'' +
+                ", durationMin=" + durationMin +
+                ", durationString='" + durationString + '\'' +
+                //", synopsis='" + synopsis + '\'' +
+                ", studio=" + studio +
                 ", trailher='" + trailher + '\'' +
                 ", likes=" + likes +
                 '}';

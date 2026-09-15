@@ -2,11 +2,7 @@ package br.com.rafael.animedev.Conexaoapi;
 
 import java.util.List;
 
-record Jpg(String image_url) {}
-record ImagensAnime(Jpg jpg) {}
-record Trailer(String url) {}
-record Aired(String string) {}
-record Studio (String name) {}
+
 
 public record TitleOmdb(String title_english,
                         String title_japanese,
@@ -23,6 +19,12 @@ public record TitleOmdb(String title_english,
     public record DataWrapper(TitleOmdb data) {}
     public record DataWrapperId(TitleOmdb data) {}
     public record DataWrapperBusca(List<TitleOmdb> data) {}
+
+    public record Jpg(String image_url) {}
+    public record ImagensAnime(Jpg jpg) {}
+    public record Trailer(String url) {}
+    public record Aired(String string) {}
+    public record Studio (String name) {}
 
     @Override
     public String toString() {
