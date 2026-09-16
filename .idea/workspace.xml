@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f09b917e-b010-4a02-b343-bb4142e26480" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/br/com/rafael/animedev/Conexaoapi/ConexaoApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TesteComBusca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TesteComBusca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/rafael/animedev/Conexaoapi/TitleOmdb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/rafael/animedev/Conexaoapi/TitleOmdb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/rafael/animedev/models/Anime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/rafael/animedev/models/Anime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/rafael/animedev/models/Filme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/rafael/animedev/models/Filme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/com/rafael/animedev/Conexaoapi/ConexaoApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/rafael/animedev/Conexaoapi/ConexaoApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/br/com/rafael/animedev/models/Titles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/rafael/animedev/models/Titles.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

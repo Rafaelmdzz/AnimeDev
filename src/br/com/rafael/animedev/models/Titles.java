@@ -74,6 +74,10 @@ public class Titles {
 
     public int getLikes() {return likes;}
 
+    public void darLike(){
+        likes++;
+    }
+
     public static int converterTempoDuracao (String duracaoStr) {
         if (duracaoStr == null || duracaoStr.isEmpty() || duracaoStr.equals("Unknown")) {
             return 0;
@@ -111,22 +115,5 @@ public class Titles {
                 
                 
                 """, titleEnglish, titleJapanese, status, image, dataInicio, durationMin, synopsis, studio,trailher, likes);
-    }
-
-    @Override
-    public String toString() {
-        return "Titles{" +
-                "titleEnglish='" + titleEnglish + '\'' +
-                ", titleJapanese='" + titleJapanese + '\'' +
-                ", status='" + status + '\'' +
-                ", image='" + image + '\'' +
-                ", dataInicio='" + dataInicio + '\'' +
-                ", durationMin=" + durationMin +
-                ", durationString='" + durationString + '\'' +
-                //", synopsis='" + synopsis + '\'' +
-                ", studio=" + studio +
-                ", trailher='" + trailher + '\'' +
-                ", likes=" + likes +
-                '}';
     }
 }
